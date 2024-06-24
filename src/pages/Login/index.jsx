@@ -10,6 +10,7 @@ const LoginPage = () => {
     },
     onSubmit: (value) => {
       // Được kích hoạt khi ấn submit
+
       console.log('value: ', value);
     },
     validationSchema: yup.object().shape({
@@ -51,6 +52,8 @@ const LoginPage = () => {
       <button className="bg-purple-500 text-white w-full rounded-md py-2">
         Đăng nhập
       </button>
+
+      <p className="text-blue-400 underline">Đăng ký</p>
     </form>
   );
 };
