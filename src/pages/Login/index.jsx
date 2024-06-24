@@ -1,8 +1,16 @@
+import { message } from 'antd';
+import axios from 'axios';
 import { useFormik } from 'formik';
 import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { userService } from '../../services/userService';
+import { useDispatch } from 'react-redux';
+import { postLoginAction } from '../../redux/user/userSlice';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const dispacth = useDispatch();
   const formLogin = useFormik({
     initialValues: {
       taiKhoan: '',
@@ -10,8 +18,19 @@ const LoginPage = () => {
     },
     onSubmit: (value) => {
       // Được kích hoạt khi ấn submit
-
-      console.log('value: ', value);
+      userService
+        .postLogin(value)
+        .then((res) => {
+          // đăng nhập thành công  => đá về trang chủ
+          navigate('/');
+          message.success('Đăng nhập thành công');
+          console.log('res: ', res.data.content);
+          dispacth(postLoginAction(res.data.content));
+        })
+        .catch((err) => {
+          message.error('Đăng nhập thất bại');
+          console.log('err: ', err);
+        });
     },
     validationSchema: yup.object().shape({
       taiKhoan: yup
@@ -24,6 +43,7 @@ const LoginPage = () => {
       matKhau: yup.string().required('Mật khẩu không được để trống'),
     }),
   });
+
   return (
     <form className="bg-white p-10 space-y-5" onSubmit={formLogin.handleSubmit}>
       <h3 className="text-2xl">Đăng Nhập</h3>
@@ -53,7 +73,15 @@ const LoginPage = () => {
         Đăng nhập
       </button>
 
-      <p className="text-blue-400 underline">Đăng ký</p>
+      <button
+        type="button"
+        onClick={() => {
+          navigate('/auth/register');
+        }}
+        className="text-blue-400 underline"
+      >
+        Đăng ký
+      </button>
     </form>
   );
 };
