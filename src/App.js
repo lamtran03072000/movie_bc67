@@ -6,15 +6,18 @@ import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
 import HomeTemplate from './template/HomeTemplate';
 import HomePage from './pages/Home';
+import DetailMovie from './pages/detail-movie';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* home template */}
-        {/* localhost:3000 */}
+        {/* localhost:300/detail-movie */}
         <Route path="" element={<HomeTemplate />}>
           <Route index element={<HomePage />} />
+          {/* detail-movie/123 */}
+          <Route path="detail-movie/:idMovie" element={<DetailMovie />} />
         </Route>
         {/* auth template */}
         <Route path="/auth" element={<AuthTemplate />}>
