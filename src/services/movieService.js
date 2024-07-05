@@ -23,6 +23,12 @@ export const movieService = {
 
     return https.get(uri);
   },
+
+  getListDataTicketRoom: (idSchedule) => {
+    let uri = `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${idSchedule}`;
+
+    return https.get(uri);
+  },
 };
 
 // useMeMo , useCallBack, useEffect , dom thật khác dom ảo (visual dom)

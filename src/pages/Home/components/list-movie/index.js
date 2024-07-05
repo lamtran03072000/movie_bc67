@@ -43,7 +43,9 @@ const ListMovie = () => {
     <div className="w-4/5 mx-auto">
       <h3 className="text-2xl text-gray-400 text-center">Danh sách phim</h3>
 
-      <div className="grid grid-cols-4  gap-10">{renderListMovie()}</div>
+      <div className="grid grid-cols-4 lg:grid-cols-2 xs:grid-cols-1   gap-10">
+        {renderListMovie()}
+      </div>
     </div>
   );
 };

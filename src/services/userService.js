@@ -18,4 +18,10 @@ export const userService = {
     let uri = '/api/QuanLyNguoiDung/DangNhap';
     return https.post(uri, value);
   },
+
+  getInfoUser: () => {
+    let uri = '/api/QuanLyNguoiDung/ThongTinTaiKhoan';
+
+    return https.post(uri);
+  },
 };

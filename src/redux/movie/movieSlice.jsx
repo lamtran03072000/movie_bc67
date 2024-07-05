@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getDataTicketRoomThunk } from './movieThunk';
 
 const initialState = {
   infoDetailMovie: {},
   scheduleDetailMovie: [],
+
+  infoTicketRoom: {},
 };
 
 const movieSlice = createSlice({
@@ -15,6 +18,11 @@ const movieSlice = createSlice({
     getScheduleDetailMovie: (state, action) => {
       state.scheduleDetailMovie = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getDataTicketRoomThunk.fulfilled, (state, action) => {
+      state.infoTicketRoom = action.payload;
+    });
   },
 });
 

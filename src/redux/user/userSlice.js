@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { userLocal } from '../../services/localService';
 
 const initialState = {
-  userInfo: userLocal.get(),
+  userInfo: userLocal.get(), // null là chưa đăng nhập
 };
 
 const userSlice = createSlice({

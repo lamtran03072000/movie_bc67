@@ -1,9 +1,11 @@
 import { Image, Tabs } from 'antd';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const ScheduleMovieDetail = ({ refScheduleDetailMovie }) => {
   let { scheduleDetailMovie } = useSelector((state) => state.movieReducer);
+  let navigate = useNavigate();
   const items = [
     {
       key: '1',
@@ -30,8 +32,14 @@ const ScheduleMovieDetail = ({ refScheduleDetailMovie }) => {
           <h3>{rapChieu.tenCumRap}</h3>
           <div>
             {rapChieu.lichChieuPhim.map((lichChieu) => {
+              console.log('lichChieu: ', lichChieu);
               return (
-                <button className="bg-blue-400 text-white rounded p-2 mx-2">
+                <button
+                  onClick={() => {
+                    navigate(`/ticket-room/${lichChieu.maLichChieu}`);
+                  }}
+                  className="bg-blue-400 text-white rounded p-2 mx-2"
+                >
                   {lichChieu.ngayChieuGioChieu}
                 </button>
               );

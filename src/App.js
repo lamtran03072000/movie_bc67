@@ -7,7 +7,11 @@ import RegisterPage from './pages/Register';
 import HomeTemplate from './template/HomeTemplate';
 import HomePage from './pages/Home';
 import DetailMovie from './pages/detail-movie';
+import TicketRoom from './pages/ticket-room';
+import InfoUser from './pages/info-user';
+import Autherization from './HOC/autherization';
 
+// break poin => desktop : > 1000px , tablet : < 1000 px , > 300px , mobile < 300px
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +22,15 @@ function App() {
           <Route index element={<HomePage />} />
           {/* detail-movie/123 */}
           <Route path="detail-movie/:idMovie" element={<DetailMovie />} />
+          <Route path="ticket-room/:idSchedule" element={<TicketRoom />} />
+          <Route
+            path="info-user"
+            element={
+              <Autherization>
+                <InfoUser />
+              </Autherization>
+            }
+          />
         </Route>
         {/* auth template */}
         <Route path="/auth" element={<AuthTemplate />}>
