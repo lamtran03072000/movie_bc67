@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
 import { movieService } from '../../../../services/movieService';
+import { useDispatch } from 'react-redux';
+import {
+  turnOffLoading,
+  turnOnLoading,
+} from '../../../../redux/loading/loadingSlice';
 
 const Banner = () => {
   let [listBanner, setListBanner] = useState();
 
+  const dispatch = useDispatch();
   const fetchListBanner = () => {
     let promise = movieService.getBanner();
+    //bật loading
 
     promise
       .then((res) => {
         let reponseListBanner = res.data.content; // [{},{},{}]
 
         setListBanner(reponseListBanner);
+        //tắt loading
       })
       .catch((err) => {
         console.log('err: ', err);
+        //tắt loading
       });
   };
 

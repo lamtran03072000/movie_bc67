@@ -10,11 +10,15 @@ import DetailMovie from './pages/detail-movie';
 import TicketRoom from './pages/ticket-room';
 import InfoUser from './pages/info-user';
 import Autherization from './HOC/autherization';
+import LoadingPage from './components/loading';
 
 // break poin => desktop : > 1000px , tablet : < 1000 px , > 300px , mobile < 300px
+// giờ code cái modal thì phải làm sao ?
 function App() {
   return (
     <BrowserRouter>
+      {/*  */}
+      <LoadingPage />
       <Routes>
         {/* home template */}
         {/* localhost:300/detail-movie */}

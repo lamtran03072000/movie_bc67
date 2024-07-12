@@ -2,40 +2,26 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutAction } from '../../redux/user/userSlice';
 import { NavLink } from 'react-router-dom';
+import { DesktopResponsive, TabletResponsive } from '../../HOC/responsive';
+import NavLoginDesktop from './components/NavLoginDesktop';
+import NavLoginTablet from './components/NavLoginTablet';
 
 const HeaderPage = () => {
   const { userInfo } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const renderNavUserLogin = () => {
-    if (userInfo) {
-      return (
-        <>
-          <span className="text-white">{userInfo.hoTen}</span>
-          <button
-            onClick={() => {
-              dispatch(logOutAction());
-            }}
-            className="bg-red-500 text-white rounded p-2 mx-2"
-          >
-            Đăng xuất
-          </button>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <NavLink
-            to={'/auth/login'}
-            className="bg-blue-500 text-white rounded p-2 mx-2"
-          >
-            Đăng nhập
-          </NavLink>
-          <button className="bg-red-500 text-white rounded p-2 mx-2">
-            Đăng ký
-          </button>
-        </>
-      );
-    }
+    // > 1024px
+    return (
+      <>
+        <DesktopResponsive>
+          <NavLoginDesktop userInfo={userInfo} />
+        </DesktopResponsive>
+        {/* 640 - 1024px */}
+        <TabletResponsive>
+          <NavLoginTablet userInfo={userInfo} />
+        </TabletResponsive>
+      </>
+    );
   };
 
   return (
